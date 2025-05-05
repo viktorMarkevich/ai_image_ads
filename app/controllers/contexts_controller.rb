@@ -57,6 +57,16 @@ class ContextsController < ApplicationController
     end
   end
 
+  # app/controllers/contexts_controller.rb
+
+  def generate_ideas
+    @context = Context.find(params[:id])
+    ideas = AdIdeaGenerator.new(@context).call
+    @context.update(ad_ideas: ideas)
+    redirect_to @context, notice: "Ідеї згенеровано успішно."
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_context

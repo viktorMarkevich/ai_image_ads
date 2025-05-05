@@ -2,6 +2,20 @@
 
 <%= render @context %>
 
+<h2>Advertising ideas</h2>
+
+<% if @context.ad_ideas.any? %>
+  <ul>
+    <% @context.ad_ideas.each do |idea| %>
+      <li><%= idea %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Ideas have not yet been generated.</p>
+  <%= button_to "Generate ideas", generate_ideas_context_path(@context), method: :post %>
+<% end %>
+
+
 <div>
   <%= link_to "Edit this context", edit_context_path(@context) %> |
   <%= link_to "Back to contexts", contexts_path %>
