@@ -14,9 +14,6 @@ class AdIdeaGenerator
       Format: List of 4 short phrases.
     PROMPT
 
-    # p @client
-    # p '*'*100
-
     begin
       response = @client.chat(
         parameters: {
