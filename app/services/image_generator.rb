@@ -1,8 +1,7 @@
 # app/services/image_generator.rb
 class ImageGenerator
-  def initialize#(context)
-    # @context = context
-    @context = Context.where(name: 'Food').first # temporary
+  def initialize(context)
+    @context = context
     @client = OpenAI::Client.new(access_token: ENV["OPENAI_API_KEY"], log_errors: true)
   end
 
@@ -18,14 +17,9 @@ class ImageGenerator
       )
 
       url = response.dig("data", 0, "url")
-
-      p url
-      p '*'*100
-      # if url
-      #   @context.some_generated_image_model.create!(
-      #     # model columns
-      #   )
-      # end
+      @context.generated_images.create!(prompt: prompt, url: url, source: "openai") if url
+      # DALL·E provides a URL that is only active for a limited time (about an hour). For MVP, this is OK.
+      # TODO: use base64 if there is time (there are big doubts)
     end
   end
 end
