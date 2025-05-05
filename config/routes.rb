@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :contexts do
     member do
       post :generate_ideas
+      post :generate_images
     end
   end
 

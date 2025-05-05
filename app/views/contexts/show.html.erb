@@ -15,6 +15,21 @@
   <%= button_to "Generate ideas", generate_ideas_context_path(@context), method: :post %>
 <% end %>
 
+<% if @context.generated_images.any? %>
+  <h2>Generated Images</h2>
+  <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+    <% @context.generated_images.each do |img| %>
+      <div>
+        <p><strong>Prompt:</strong> <%= img.prompt %></p>
+        <img src="<%= img.url %>" style="width: 200px;">
+      </div>
+    <% end %>
+  </div>
+<% elsif @context.ad_ideas.any? %>
+  <%= button_to "Generate images", generate_images_context_path(@context), method: :post %>
+<% end %>
+
+
 
 <div>
   <%= link_to "Edit this context", edit_context_path(@context) %> |

@@ -63,9 +63,19 @@ class ContextsController < ApplicationController
     @context = Context.find(params[:id])
     ideas = AdIdeaGenerator.new(@context).call
     @context.update(ad_ideas: ideas)
-    redirect_to @context, notice: "Ідеї згенеровано успішно."
+    redirect_to @context, notice: "Ideas were generated successfully"
   end
 
+  def generate_images
+    @context = Context.find(params[:id])
+
+    if @context.ad_ideas.any?
+      ImageGenerator.new(@context).call
+      redirect_to @context, notice: "Generate images"
+    else
+      redirect_to @context, alert: "Please, generate ideas first."
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
