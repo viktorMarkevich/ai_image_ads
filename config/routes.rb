@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :generated_images, only: [] do
+    post :choose, on: :member
+  end
+
   root "contexts#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

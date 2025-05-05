@@ -19,17 +19,22 @@
   <h2>Generated Images</h2>
   <div style="display: flex; flex-wrap: wrap; gap: 16px;">
     <% @context.generated_images.each do |img| %>
-      <div>
+      <% color = img.selected? ? 'darkorange' : '#ccc' %>
+      <div style="border: 2px solid <%= color %>; padding: 8px;">
         <p><strong>Prompt:</strong> <%= img.prompt %></p>
-        <img src="<%= img.url %>" style="width: 200px;">
+        <img src="<%= img.url %>" style="width: 200px;"><br>
+
+        <% if img.selected? %>
+          <p style="color: darkorange;"><strong>the chosen one</strong></p>
+        <% else %>
+          <%= button_to "Choose", choose_generated_image_path(img), method: :post %>
+        <% end %>
       </div>
     <% end %>
   </div>
 <% elsif @context.ad_ideas.any? %>
   <%= button_to "Generate images", generate_images_context_path(@context), method: :post %>
 <% end %>
-
-
 
 <div>
   <%= link_to "Edit this context", edit_context_path(@context) %> |
