@@ -11,5 +11,5 @@ class Context
   field :tiktok_campaign_id, type: String
   field :tiktok_adgroup_id, type: String
 
-  # has_many :generated_images, dependent: :destroy
+  has_many :generated_images, dependent: :destroy
 end
