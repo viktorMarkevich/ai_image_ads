@@ -20,6 +20,7 @@ Bundler.require(*Rails.groups)
 
 module AiImageAds
   class Application < Rails::Application
+    Dotenv::Railtie.load
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
 
