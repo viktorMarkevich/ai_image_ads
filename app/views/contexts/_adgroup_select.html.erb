@@ -1,0 +1,4 @@
+<%= label_tag :adgroup_id, "Ad Group" %>
+<%= select_tag "context[adgroup_id]",
+               options_for_select(adgroups.map { |a| [a["adgroup_name"], a["adgroup_id"]] }, context.adgroup_id),
+               include_blank: true %>

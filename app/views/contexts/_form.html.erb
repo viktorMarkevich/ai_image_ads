@@ -1,4 +1,4 @@
-<%= form_with(model: context) do |form| %>
+<%= form_with(model: context, local: true, data: { controller: "tiktok-binding" }) do |form| %>
   <% if context.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(context.errors.count, "error") %> prohibited this context from being saved:</h2>
@@ -26,15 +26,25 @@
     <%= form.text_field :landing_page_url %>
   </div>
 
+<!--  <turbo-frame id="campaigns_frame">-->
+    <%#= render "contexts/campaign_select", context: @context %>
+<!--  </turbo-frame>-->
   <div>
-    <%= form.label :tiktok_campaign_id %>
-    <%= form.select :tiktok_campaign_id, @campaigns.map { |c| [c["campaign_name"], c["campaign_id"]] }, include_blank: true %>
+    <%= form.label :campaign_id %>
+    <%= form.select :campaign_id,
+                    options_for_select(@campaigns.map { |c| [c["campaign_name"], c["campaign_id"]] }, @context.campaign_id),
+                    { include_blank: true },
+                    { data: { tiktok_binding_target: "campaignSelect", action: "change->tiktok-binding#updateAdgroups", controller: "tiktok-binding" } } %>
   </div>
 
-  <div>
-    <%= form.label :tiktok_adgroup_id, style: "display: block" %>
-    <%= form.text_field :tiktok_adgroup_id %>
-  </div>
+  <turbo-frame id="adgroups_frame">
+    <%= render partial: "contexts/adgroup_select", locals: { context: @context, adgroups: [] } %>
+  </turbo-frame>
+
+<!--  <div>-->
+    <%#= form.label :tiktok_adgroup_id, style: "display: block" %>
+    <%#= form.text_field :tiktok_adgroup_id %>
+<!--  </div>-->
 
   <div>
     <%= form.submit %>

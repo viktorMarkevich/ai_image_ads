@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     post :choose, on: :member
   end
 
+  # get "/tiktok/campaigns", to: "tiktok#campaigns"
+  get "/tiktok/adgroups", to: "tiktok#adgroups"
+
   root "contexts#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -86,6 +86,6 @@ class ContextsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def context_params
-      params.expect(context: [ :name, :industry_description, :landing_page_url, :tiktok_ad_account_id, :tiktok_campaign_id, :tiktok_adgroup_id ])
+      params.expect(context: [ :name, :industry_description, :landing_page_url, :campaign_id, :adgroup_id ])
     end
 end
