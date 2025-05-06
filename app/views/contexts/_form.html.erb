@@ -27,13 +27,8 @@
   </div>
 
   <div>
-    <%= form.label :tiktok_ad_account_id, style: "display: block" %>
-    <%= form.text_field :tiktok_ad_account_id %>
-  </div>
-
-  <div>
-    <%= form.label :tiktok_campaign_id, style: "display: block" %>
-    <%= form.text_field :tiktok_campaign_id %>
+    <%= form.label :tiktok_campaign_id %>
+    <%= form.select :tiktok_campaign_id, @campaigns.map { |c| [c["campaign_name"], c["campaign_id"]] }, include_blank: true %>
   </div>
 
   <div>

@@ -17,6 +17,7 @@ class ContextsController < ApplicationController
 
   # GET /contexts/1/edit
   def edit
+    @campaigns = TiktokCampaignsFetcher.call
   end
 
   # POST /contexts or /contexts.json

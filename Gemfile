@@ -57,3 +57,4 @@ end
 gem "mongoid", "~> 9.0"
 gem 'ruby-openai'
 gem 'dotenv-rails'
+gem 'tiktok_business_api'
