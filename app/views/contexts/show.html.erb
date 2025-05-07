@@ -10,6 +10,7 @@
       <li><%= idea %></li>
     <% end %>
   </ul>
+  <%= button_to "Generate ideas again", generate_ideas_context_path(@context), method: :post %>
 <% else %>
   <p>Ideas have not yet been generated.</p>
   <%= button_to "Generate ideas", generate_ideas_context_path(@context), method: :post %>
