@@ -32,9 +32,9 @@
       </div>
     <% end %>
   </div>
-<% elsif @context.ad_ideas.any? %>
-  <%= button_to "Generate images", generate_images_context_path(@context), method: :post %>
 <% end %>
+
+<%= button_to button_name, generate_images_context_path(@context), method: :post %>
 
 <div>
   <%= link_to "Edit this context", edit_context_path(@context) %> |

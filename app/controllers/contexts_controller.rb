@@ -71,6 +71,7 @@ class ContextsController < ApplicationController
     @context = Context.find(params[:id])
 
     if @context.ad_ideas.any?
+      @context.generated_images.destroy_all
       ImageGenerator.new(@context).call
       redirect_to @context, notice: "Generate images"
     else
