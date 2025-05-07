@@ -6,6 +6,9 @@ setup:
 up:
 	docker compose up --build
 
+server:
+	docker compose up --build web
+
 bash:
 	docker compose exec web bash
 
