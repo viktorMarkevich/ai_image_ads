@@ -1,11 +1,10 @@
 module ContextsHelper
-  def button_name
-    if @context.ad_ideas.any? && @context.generated_images.any?
-      return 'Generate Images Again'
-    end
-
-    if @context.ad_ideas.any? && @context.generated_images.blank?
-      'Generate images'
+  def render_image_generation_cta(context)
+    if context.ad_ideas.any?
+      button_name = context.generated_images.any? ? 'Generate Images Again' : 'Generate images'
+      button_to button_name, generate_images_context_path(context), method: :post
+    else
+      raw("<span style='color: orange'>Please, generate ideas first</span>")
     end
   end
 end

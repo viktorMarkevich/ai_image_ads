@@ -1,5 +1,6 @@
 class ContextsController < ApplicationController
   before_action :set_context, only: %i[ show edit update destroy ]
+  before_action :fetch_campaigns, only: %i[ new edit ]
 
   # GET /contexts or /contexts.json
   def index
@@ -17,7 +18,6 @@ class ContextsController < ApplicationController
 
   # GET /contexts/1/edit
   def edit
-    @campaigns = TiktokCampaignsFetcher.call
   end
 
   # POST /contexts or /contexts.json
@@ -83,6 +83,10 @@ class ContextsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_context
       @context = Context.find(params.expect(:id))
+    end
+
+    def fetch_campaigns
+      @campaigns = TiktokCampaignsFetcher.call
     end
 
     # Only allow a list of trusted parameters through.
