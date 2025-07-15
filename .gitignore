@@ -34,4 +34,5 @@
 /config/master.key
 .ruby-gemset
 .env
+!.env/example
 .idea/
